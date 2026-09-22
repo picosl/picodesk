@@ -230,13 +230,7 @@ export default function Home() {
 
           {/* Learn More */}
 
-          <div className="mt-8 flex items-center font-semibold text-blue-400 transition-all duration-300 group-hover:translate-x-2">
-
-            Learn More
-
-            <ArrowRight className="ml-2 h-5 w-5" />
-
-          </div>
+        
 
         </article>
 
