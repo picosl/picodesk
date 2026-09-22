@@ -151,7 +151,11 @@ export default function Pricing() {
 
                 </span>
 
-              
+                <span className="ml-2 text-slate-400">
+
+                  forever
+
+                </span>
 
               </div>
 
