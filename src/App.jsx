@@ -1,6 +1,6 @@
 
 import { useEffect } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
@@ -17,11 +17,9 @@ import { trackVisit } from "./utils/analytics.js";
 
 
 function RouteTracker() {
-  const location = useLocation();
-
   useEffect(() => {
     trackVisit();
-  }, [location.pathname]);
+  }, []);
 
   return null;
 }

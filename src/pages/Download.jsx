@@ -34,6 +34,11 @@ export default function Download() {
   const [downloadUrl, setDownloadUrl] = useState("");
   const [version, setVersion] = useState("");
 
+   const [stats, setStats] = useState({
+    visitors: 0,
+    downloads: 0,
+  });
+
   useEffect(() => {
     fetch("/downloads/latest.json")
       .then((response) => {
@@ -49,6 +54,26 @@ export default function Download() {
       })
       .catch((error) => {
         console.error("Download information error:", error);
+      });
+  }, []);
+
+   useEffect(() => {
+    fetch("/api/analytics/stats.php")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to load analytics");
+        }
+
+        return response.json();
+      })
+      .then((data) => {
+        setStats({
+          visitors: data.visitors || 0,
+          downloads: data.downloads || 0,
+        });
+      })
+      .catch((error) => {
+        console.error("Analytics error:", error);
       });
   }, []);
 
@@ -245,6 +270,26 @@ export default function Download() {
                     Download PicoDesk
                   </Button>
                 </div>
+
+
+                <div className="mt-6 flex items-center gap-5 text-sm">
+  <div className="flex items-center gap-2">
+  </div>
+
+  <div className="flex items-center gap-2">
+    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-800/70 text-slate-300">
+      <DownloadIcon className="h-3.5 w-3.5" />
+    </span>
+
+    <span className="font-semibold text-white">
+      {stats.downloads.toLocaleString()}
+    </span>
+
+    <span className="text-slate-500">
+      Downloads
+    </span>
+  </div>
+</div>
               </div>
             </div>
 
